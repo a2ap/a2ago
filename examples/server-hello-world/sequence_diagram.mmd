@@ -1,0 +1,45 @@
+sequenceDiagram
+    participant Client
+    participant GinRouter
+    participant Dispatcher
+    participant A2AServer
+    participant TaskManager
+    participant QueueManager
+    participant AgentExecutor
+    participant TaskQueue
+
+    Client->>GinRouter: POST /a2a/server (JSON-RPC Request: "message/send")
+    GinRouter->>Dispatcher: Dispatch(jsonRpcRequest)
+    Dispatcher->>A2AServer: HandleMessage(ctx, params)
+    A2AServer->>TaskManager: LoadOrCreateContext(ctx, params)
+    TaskManager-->>A2AServer: taskId, taskCtx
+    A2AServer->>QueueManager: Create(ctx, taskId)
+    QueueManager-->>A2AServer: taskQueue
+    A2AServer->>TaskQueue: EnqueueEvent(initial message)
+
+    activate A2AServer
+    note over A2AServer, AgentExecutor: Agent 执行 Goroutine
+    A2AServer->>AgentExecutor: Execute(ctx, taskCtx.Task, taskQueue)
+    activate AgentExecutor
+
+    AgentExecutor->>TaskQueue: EnqueueEvent(TaskStatusUpdateEvent: "Working...")
+    TaskQueue->>A2AServer: event (via AsFlux channel)
+    A2AServer->>TaskManager: ApplyStatusUpdate
+    TaskManager-->>A2AServer: updatedTask
+
+    AgentExecutor->>TaskQueue: EnqueueEvent(TaskArtifactUpdateEvent: "Generating response...")
+    TaskQueue->>A2AServer: event (via AsFlux channel)
+    A2AServer->>TaskManager: ApplyArtifactUpdate
+    TaskManager-->>A2AServer: updatedTask
+
+    AgentExecutor-->>A2AServer: execution completed
+    deactivate AgentExecutor
+
+    A2AServer->>TaskQueue: Close()
+    A2AServer->>QueueManager: Remove(taskId)
+    A2AServer->>A2AServer: Wait for event aggregation
+    A2AServer-->>Dispatcher: SendMessageResponse
+    deactivate A2AServer
+
+    Dispatcher-->>GinRouter: JSON-RPC Response (with result)
+    GinRouter-->>Client: HTTP 200 OK (JSON-RPC Response)
