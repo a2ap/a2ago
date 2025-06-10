@@ -15,7 +15,7 @@
 1.  Clone the repository and navigate to the `a2ago` directory:
 
 ```bash
-git clone https://github.com/a2a4j/a2ago.git
+git clone https://github.com/a2ap/a2ago.git
 cd a2ago
 ```
 
@@ -35,7 +35,7 @@ Here's a simple example of how to use the library:
 package main
 
 import (
-    "github.com/a2a4j/a2ago"
+    "github.com/a2ap/a2ago"
     "github.com/rs/zerolog/log"
 )
 

@@ -9,12 +9,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/a2a4j/a2ago/internal/util"
+	"github.com/a2ap/a2ago/internal/util"
 
-	model2 "github.com/a2a4j/a2ago/internal/model"
-	"github.com/a2a4j/a2ago/pkg/service/client"
+	model2 "github.com/a2ap/a2ago/internal/model"
+	"github.com/a2ap/a2ago/pkg/service/client"
 
-	"github.com/a2a4j/a2ago/internal/jsonrpc"
+	"github.com/a2ap/a2ago/internal/jsonrpc"
 )
 
 // DefaultA2aClient is a default implementation of A2aClient.

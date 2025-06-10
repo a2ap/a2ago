@@ -4,9 +4,9 @@ import (
 	"context"
 	"sync"
 
-	"github.com/a2a4j/a2ago/pkg/service/server"
+	"github.com/a2ap/a2ago/pkg/service/server"
 
-	"github.com/a2a4j/a2ago/internal/model"
+	"github.com/a2ap/a2ago/internal/model"
 )
 
 // InMemoryTaskStore 是 TaskStore 接口的内存实现

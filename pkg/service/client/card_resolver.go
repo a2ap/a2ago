@@ -3,7 +3,7 @@ package client
 import (
 	"context"
 
-	"github.com/a2a4j/a2ago/internal/model"
+	"github.com/a2ap/a2ago/internal/model"
 )
 
 // CardResolver is the interface for resolving agent cards.

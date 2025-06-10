@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/a2a4j/a2ago/internal/model"
+	"github.com/a2ap/a2ago/internal/model"
 )
 
 // HttpCardResolver is the HTTP implementation of CardResolver.

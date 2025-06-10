@@ -1,7 +1,7 @@
 package server
 
 import (
-	"github.com/a2a4j/a2ago/internal/jsonrpc"
+	"github.com/a2ap/a2ago/internal/jsonrpc"
 )
 
 // Dispatcher defines the interface for handling JSON-RPC requests

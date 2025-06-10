@@ -6,10 +6,10 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/a2a4j/a2ago/pkg/service/server"
+	"github.com/a2ap/a2ago/pkg/service/server"
 
-	"github.com/a2a4j/a2ago/internal/jsonrpc"
-	"github.com/a2a4j/a2ago/internal/model"
+	"github.com/a2ap/a2ago/internal/jsonrpc"
+	"github.com/a2ap/a2ago/internal/model"
 )
 
 // DefaultDispatcher implements the Dispatcher interface for handling JSON-RPC requests

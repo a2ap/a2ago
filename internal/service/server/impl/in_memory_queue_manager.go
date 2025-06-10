@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/a2a4j/a2ago/pkg/service/server"
+	"github.com/a2ap/a2ago/pkg/service/server"
 )
 
 // InMemoryQueueManager is an in-memory implementation of the QueueManager interface

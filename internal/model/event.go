@@ -3,7 +3,7 @@ package model
 import (
 	"time"
 
-	"github.com/a2a4j/a2ago/internal/util"
+	"github.com/a2ap/a2ago/internal/util"
 )
 
 // Event represents an event in the system.

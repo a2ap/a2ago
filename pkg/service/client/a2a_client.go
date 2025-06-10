@@ -3,7 +3,7 @@ package client
 import (
 	"context"
 
-	model2 "github.com/a2a4j/a2ago/internal/model"
+	model2 "github.com/a2ap/a2ago/internal/model"
 )
 
 // A2aClient defines the core functionality of an A2A client.

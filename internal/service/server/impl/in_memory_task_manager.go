@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/a2a4j/a2ago/internal/util"
+	"github.com/a2ap/a2ago/internal/util"
 
-	"github.com/a2a4j/a2ago/internal/model"
-	"github.com/a2a4j/a2ago/pkg/service/server"
+	"github.com/a2ap/a2ago/internal/model"
+	"github.com/a2ap/a2ago/pkg/service/server"
 )
 
 // InMemoryTaskManager is an in-memory implementation of the TaskManager interface
