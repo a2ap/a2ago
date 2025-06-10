@@ -15,7 +15,7 @@
 1. 克隆仓库并进入 `a2ago` 目录：
 
 ```bash
-git clone https://github.com/a2a4j/a2ago.git
+git clone https://github.com/a2ap/a2ago.git
 cd a2ago
 ```
 
@@ -35,7 +35,7 @@ go mod download
 package main
 
 import (
-    "github.com/a2a4j/a2ago"
+    "github.com/a2ap/a2ago"
     "github.com/rs/zerolog/log"
 )
 

@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/a2a4j/a2ago/internal/model"
-	"github.com/a2a4j/a2ago/pkg/service/server"
+	"github.com/a2ap/a2ago/internal/model"
+	"github.com/a2ap/a2ago/pkg/service/server"
 )
 
 // DefaultA2AServer implements the A2AServer interface

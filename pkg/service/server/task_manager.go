@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 
-	"github.com/a2a4j/a2ago/internal/model"
+	"github.com/a2ap/a2ago/internal/model"
 )
 
 // TaskManager defines the interface for managing tasks in the A2A system.

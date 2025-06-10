@@ -6,9 +6,9 @@ import (
 	"log"
 	"time"
 
-	"github.com/a2a4j/a2ago/internal/model"
-	clientimpl "github.com/a2a4j/a2ago/internal/service/client/impl"
-	"github.com/a2a4j/a2ago/internal/util"
+	"github.com/a2ap/a2ago/internal/model"
+	clientimpl "github.com/a2ap/a2ago/internal/service/client/impl"
+	"github.com/a2ap/a2ago/internal/util"
 )
 
 func main() {

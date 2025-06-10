@@ -1,4 +1,4 @@
-module github.com/a2a4j/a2ago
+module github.com/a2ap/a2ago
 
 go 1.21
 

@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 
-	"github.com/a2a4j/a2ago/internal/model"
+	"github.com/a2ap/a2ago/internal/model"
 )
 
 // TaskStore defines the interface for storing and retrieving tasks.

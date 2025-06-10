@@ -6,10 +6,10 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/a2a4j/a2ago/examples/server-hello-world/agent"
-	"github.com/a2a4j/a2ago/internal/jsonrpc"
-	"github.com/a2a4j/a2ago/internal/model"
-	"github.com/a2a4j/a2ago/internal/service/server/impl"
+	"github.com/a2ap/a2ago/examples/server-hello-world/agent"
+	"github.com/a2ap/a2ago/internal/jsonrpc"
+	"github.com/a2ap/a2ago/internal/model"
+	"github.com/a2ap/a2ago/internal/service/server/impl"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )

@@ -1,9 +1,9 @@
-module github.com/a2a4j/a2ago/examples/server-hello-world
+module github.com/a2ap/a2ago/examples/server-hello-world
 
 go 1.21
 
 require (
-	github.com/a2a4j/a2ago v0.0.0
+	github.com/a2ap/a2ago v0.0.0
 	github.com/gin-contrib/cors v1.5.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/rs/zerolog v1.32.0
@@ -38,4 +38,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace github.com/a2a4j/a2ago => ../../
+replace github.com/a2ap/a2ago => ../../

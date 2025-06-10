@@ -1,8 +1,8 @@
 package client
 
 import (
-	"github.com/a2a4j/a2ago/internal/model"
-	client2 "github.com/a2a4j/a2ago/pkg/service/client"
+	"github.com/a2ap/a2ago/internal/model"
+	client2 "github.com/a2ap/a2ago/pkg/service/client"
 )
 
 // NewClient creates a new A2A client with the given server URL.
