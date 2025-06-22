@@ -39,6 +39,10 @@ type A2aClient interface {
 	// Returns a channel that emits task update events.
 	ResubscribeTask(ctx context.Context, params *model2.TaskQueryParams) (<-chan model2.SendStreamingMessageResponse, error)
 
+	// RetrieveAuthenticatedExtendedAgentCard retrieves the authenticated extended AgentCard.
+	// This requires providing authentication details (e.g., an API key).
+	RetrieveAuthenticatedExtendedAgentCard(ctx context.Context, authToken string) (*model2.AgentCard, error)
+
 	// Supports checks if the server likely supports optional methods based on agent card.
 	// This is a client-side heuristic and might not be perfectly accurate.
 	Supports(capability string) bool

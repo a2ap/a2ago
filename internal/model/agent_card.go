@@ -24,7 +24,7 @@ type AgentCard struct {
 	DocumentationURL string `json:"documentationUrl,omitempty"`
 
 	// Capabilities are the capabilities supported by the agent
-	Capabilities *AgentCapabilities `json:"capabilities"`
+	Capabilities *AgentCapabilities `json:"capabilities,omitempty"`
 
 	// Authentication are authentication details required to interact with the agent
 	Authentication *AgentAuthentication `json:"authentication,omitempty"`
@@ -42,26 +42,30 @@ type AgentCard struct {
 	DefaultOutputModes []string `json:"defaultOutputModes,omitempty"`
 
 	// Skills are specific skills offered by the agent
-	Skills []*AgentSkill `json:"skills"`
+	Skills []*AgentSkill `json:"skills,omitempty"`
+
+	// SupportsAuthenticatedExtendedCard is whether the agent supports authenticated extended card
+	SupportsAuthenticatedExtendedCard bool `json:"supportsAuthenticatedExtendedCard,omitempty"`
 }
 
 // NewAgentCard creates a new agent card
-func NewAgentCard(id string, name string, description string, url string, provider *AgentProvider, version string, documentationURL string, capabilities *AgentCapabilities, authentication *AgentAuthentication, securitySchemes map[string]*SecurityScheme, security []map[string][]string, defaultInputModes []string, defaultOutputModes []string, skills []*AgentSkill) *AgentCard {
+func NewAgentCard(id string, name string, description string, url string, provider *AgentProvider, version string, documentationURL string, capabilities *AgentCapabilities, authentication *AgentAuthentication, securitySchemes map[string]*SecurityScheme, security []map[string][]string, defaultInputModes []string, defaultOutputModes []string, skills []*AgentSkill, supportsAuthenticatedExtendedCard bool) *AgentCard {
 	return &AgentCard{
-		ID:                 id,
-		Name:               name,
-		Description:        description,
-		URL:                url,
-		Provider:           provider,
-		Version:            version,
-		DocumentationURL:   documentationURL,
-		Capabilities:       capabilities,
-		Authentication:     authentication,
-		SecuritySchemes:    securitySchemes,
-		Security:           security,
-		DefaultInputModes:  defaultInputModes,
-		DefaultOutputModes: defaultOutputModes,
-		Skills:             skills,
+		ID:                                id,
+		Name:                              name,
+		Description:                       description,
+		URL:                               url,
+		Provider:                          provider,
+		Version:                           version,
+		DocumentationURL:                  documentationURL,
+		Capabilities:                      capabilities,
+		Authentication:                    authentication,
+		SecuritySchemes:                   securitySchemes,
+		Security:                          security,
+		DefaultInputModes:                 defaultInputModes,
+		DefaultOutputModes:                defaultOutputModes,
+		Skills:                            skills,
+		SupportsAuthenticatedExtendedCard: supportsAuthenticatedExtendedCard,
 	}
 }
 
@@ -203,4 +207,14 @@ func (c *AgentCard) GetSkills() []*AgentSkill {
 // SetSkills sets the agent skills
 func (c *AgentCard) SetSkills(skills []*AgentSkill) {
 	c.Skills = skills
+}
+
+// GetSupportsAuthenticatedExtendedCard returns whether the agent supports authenticated extended card
+func (c *AgentCard) GetSupportsAuthenticatedExtendedCard() bool {
+	return c.SupportsAuthenticatedExtendedCard
+}
+
+// SetSupportsAuthenticatedExtendedCard sets whether the agent supports authenticated extended card
+func (c *AgentCard) SetSupportsAuthenticatedExtendedCard(supports bool) {
+	c.SupportsAuthenticatedExtendedCard = supports
 }
