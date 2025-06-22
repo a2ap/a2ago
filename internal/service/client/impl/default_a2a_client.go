@@ -380,6 +380,42 @@ func (c *DefaultA2aClient) ResubscribeTask(ctx context.Context, params *model2.T
 	return responseChan, nil
 }
 
+// RetrieveAuthenticatedExtendedAgentCard retrieves the authenticated extended AgentCard.
+func (c *DefaultA2aClient) RetrieveAuthenticatedExtendedAgentCard(ctx context.Context, authToken string) (*model2.AgentCard, error) {
+	if c.agentCard == nil {
+		c.RetrieveAgentCard()
+	}
+	if c.agentCard == nil {
+		return nil, fmt.Errorf("agent card not available")
+	}
+
+	url := fmt.Sprintf("%s/a2a/agent/authenticatedExtendedCard", c.agentCard.URL)
+	req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error creating HTTP request: %v", err)
+	}
+
+	req.Header.Set("X-API-Key", authToken)
+	req.Header.Set("Accept", "application/json")
+
+	resp, err := c.client.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("error sending HTTP request: %v", err)
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("server returned non-200 status: %s", resp.Status)
+	}
+
+	var card model2.AgentCard
+	if err := json.NewDecoder(resp.Body).Decode(&card); err != nil {
+		return nil, fmt.Errorf("error decoding agent card: %v", err)
+	}
+
+	return &card, nil
+}
+
 // Supports checks if the server likely supports optional methods based on agent card.
 func (c *DefaultA2aClient) Supports(capability string) bool {
 	if c.agentCard == nil {

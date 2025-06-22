@@ -65,6 +65,29 @@ func main() {
 		c.JSON(http.StatusOK, a2aServer.GetSelfAgentCard())
 	})
 
+	router.GET("/a2a/agent/authenticatedExtendedCard", func(c *gin.Context) {
+		// This is a placeholder for actual authentication logic.
+		// In a real application, you would validate the API key against a database or a secure store.
+		apiKey := c.GetHeader("X-API-Key")
+		if apiKey == "" {
+			c.JSON(http.StatusUnauthorized, gin.H{"error": "API key required"})
+			return
+		}
+
+		// Example of simple key check
+		if apiKey != "your-secure-api-key" {
+			c.JSON(http.StatusForbidden, gin.H{"error": "Invalid API key"})
+			return
+		}
+
+		extendedCard, err := a2aServer.GetAuthenticatedExtendedCard(c.Request.Context())
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to get extended agent card"})
+			return
+		}
+		c.JSON(http.StatusOK, extendedCard)
+	})
+
 	router.POST("/a2a/server", func(c *gin.Context) {
 		// 检查是否为 SSE 流式请求
 		if c.GetHeader("Accept") == "text/event-stream" {

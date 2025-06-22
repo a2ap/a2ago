@@ -388,3 +388,17 @@ func (s *DefaultA2AServer) SubscribeToTaskUpdates(ctx context.Context, taskID st
 func (s *DefaultA2AServer) GetSelfAgentCard() *model.AgentCard {
 	return s.agentCard
 }
+
+// GetAuthenticatedExtendedCard retrieves the authenticated extended AgentCard for the server.
+// By default, this returns the same card as getSelfAgentCard().
+// Subclasses can override this method to provide more detailed information
+// for authenticated clients.
+func (s *DefaultA2AServer) GetAuthenticatedExtendedCard(ctx context.Context) (*model.AgentCard, error) {
+	// TODO: Implement logic to return a more detailed AgentCard for authenticated clients.
+	// This may involve:
+	// 1. Checking the authenticated principal (if applicable through security context).
+	// 2. Loading a different AgentCard configuration or modifying the existing one.
+	// 3. Adding skills or details that are not available in the public AgentCard.
+	// For now, it returns the same card as getSelfAgentCard().
+	return s.agentCard, nil
+}
