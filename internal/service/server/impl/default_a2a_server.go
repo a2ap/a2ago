@@ -402,3 +402,8 @@ func (s *DefaultA2AServer) GetAuthenticatedExtendedCard(ctx context.Context) (*m
 	// For now, it returns the same card as getSelfAgentCard().
 	return s.agentCard, nil
 }
+
+// ListTasks returns all tasks
+func (s *DefaultA2AServer) ListTasks(ctx context.Context) ([]*model.Task, error) {
+	return s.taskManager.ListTasks(ctx)
+}

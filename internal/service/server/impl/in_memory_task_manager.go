@@ -259,3 +259,8 @@ func (m *InMemoryTaskManager) applyArtifactUpdate(task *model.Task, event *model
 
 	return task, nil
 }
+
+// ListTasks 返回所有任务
+func (m *InMemoryTaskManager) ListTasks(ctx context.Context) ([]*model.Task, error) {
+	return m.taskStore.ListTasks(ctx)
+}

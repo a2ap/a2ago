@@ -2,6 +2,7 @@ package impl
 
 import (
 	"context"
+	"sort"
 	"sync"
 
 	"github.com/a2ap/a2ago/pkg/service/server"
@@ -51,4 +52,19 @@ func (s *InMemoryTaskStore) Delete(ctx context.Context, taskID string) error {
 
 	delete(s.tasks, taskID)
 	return nil
+}
+
+// ListTasks 返回所有任务
+func (s *InMemoryTaskStore) ListTasks(ctx context.Context) ([]*model.Task, error) {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+	tasks := make([]*model.Task, 0, len(s.tasks))
+	for _, task := range s.tasks {
+		tasks = append(tasks, task)
+	}
+	// 按CreatedAt降序排序（最新的在前）
+	sort.Slice(tasks, func(i, j int) bool {
+		return tasks[i].CreatedAt > tasks[j].CreatedAt
+	})
+	return tasks, nil
 }

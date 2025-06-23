@@ -1,0 +1,642 @@
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.app-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.75rem;
+}
+
+.card h2 svg {
+  width: 24px;
+  height: 24px;
+  color: #667eea;
+}
+
+.input-group {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+}
+
+.input-field {
+  flex: 1;
+  padding: 0.875rem 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: white;
+  resize: vertical;
+  min-height: 100px;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.btn {
+  padding: 0.875rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.process-btn {
+  width: 100%;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.json-pre {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  max-height: 400px;
+  overflow-y: auto;
+  color: #2d3748;
+  position: relative;
+}
+
+.json-pre::before {
+  content: 'JSON';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #667eea;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.error-message {
+  background: linear-gradient(135deg, #fed7d7 0%, #feb2b2 100%);
+  border: 1px solid #f56565;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  color: #c53030;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.success-message {
+  background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+  border: 1px solid #48bb78;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  color: #22543d;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 服务器信息样式 */
+.server-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background: #f8fafc;
+  border-radius: 6px;
+  border-left: 3px solid #667eea;
+}
+
+.info-item strong {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+/* 任务信息样式 */
+.task-info {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #f0fff4;
+  border: 1px solid #9ae6b4;
+  border-radius: 6px;
+  color: #22543d;
+  font-size: 0.875rem;
+}
+
+/* 模型网格样式 */
+.models-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.model-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.model-item:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e0;
+}
+
+.model-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.model-info {
+  flex: 1;
+}
+
+.model-info h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.model-info p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+.model-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.model-result {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.model-result h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.result-pre {
+  background: #2d3748;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 0;
+}
+
+/* 日志容器样式 */
+.log-container {
+  background: #2d3748;
+  border-radius: 8px;
+  padding: 1.5rem;
+  max-height: 400px;
+  overflow-y: auto;
+  color: #e2e8f0;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-size: 0.875rem;
+  position: relative;
+}
+
+.log-container::before {
+  content: 'Communication Log';
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #667eea;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.log-events {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.log-event {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 0.75rem;
+  border-left: 3px solid #667eea;
+  animation: fadeIn 0.3s ease;
+}
+
+.log-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.log-time {
+  color: #a0aec0;
+}
+
+.log-model {
+  font-weight: 600;
+  color: #667eea;
+}
+
+.log-status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.log-status.status-pending {
+  background: #fef5e7;
+  color: #c05621;
+}
+
+.log-status.status-processing {
+  background: #ebf8ff;
+  color: #2b6cb0;
+}
+
+.log-status.status-completed {
+  background: #f0fff4;
+  color: #22543d;
+}
+
+.log-status.status-running {
+  background: #ebf8ff;
+  color: #2b6cb0;
+}
+
+.log-status.status-completing {
+  background: #fef5e7;
+  color: #c05621;
+}
+
+.log-message {
+  color: #cbd5e0;
+  font-size: 0.8rem;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.status-indicator.connected {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.status-indicator.disconnected {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+.status-indicator.connecting {
+  background: #fef5e7;
+  color: #c05621;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #667eea;
+  font-weight: 500;
+}
+
+.loading::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e2e8f0;
+  border-top: 2px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 0.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .card {
+    padding: 1.5rem;
+  }
+  
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .model-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .log-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+.tasks-card {
+  min-width: 350px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.tasks-list {
+  margin-top: 1rem;
+}
+.tasks-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f8fafc;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+.tasks-table th, .tasks-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: left;
+}
+.tasks-table th {
+  background: #e0e7ef;
+  color: #374151;
+  font-weight: 600;
+}
+.tasks-table tr.selected {
+  background: #dbeafe;
+}
+.tasks-table tr:hover {
+  background: #f1f5f9;
+}
+.tasks-table td {
+  vertical-align: middle;
+}
+.view-btn {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: background 0.2s;
+}
+.view-btn:hover {
+  background: #4338ca;
+}
+.refresh-btn {
+  margin-left: 1rem;
+  background: #f1f5f9;
+  color: #6366f1;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: background 0.2s;
+}
+.refresh-btn:hover {
+  background: #e0e7ef;
+}
+.task-detail-card {
+  min-width: 350px;
+  max-width: 100%;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  font-size: 0.98rem;
+}
+.task-detail-content > div {
+  margin-bottom: 0.75rem;
+}
+.result-pre {
+  background: #2d3748;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  max-height: 200px;
+  overflow-y: auto;
+  margin: 0.25rem 0 0 0;
+}
+.success-message, .error-message {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+.success-message {
+  background: #f0fff4;
+  color: #22543d;
+  border: 1px solid #9ae6b4;
+}
+.error-message {
+  background: #fff5f5;
+  color: #c53030;
+  border: 1px solid #feb2b2;
+}
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #667eea;
+  font-weight: 500;
+}
+.spin {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .tasks-card, .task-detail-card {
+    min-width: unset;
+    padding: 1rem;
+  }
+} 
