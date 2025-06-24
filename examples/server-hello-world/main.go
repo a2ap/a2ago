@@ -93,32 +93,6 @@ func main() {
 		c.JSON(http.StatusOK, extendedCard)
 	})
 
-	router.GET("/a2a/events", func(c *gin.Context) {
-		c.Writer.Header().Set("Content-Type", "text/event-stream")
-		c.Writer.Header().Set("Cache-Control", "no-cache")
-		c.Writer.Header().Set("Connection", "keep-alive")
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-
-		messageChan := make(chan string)
-		defer close(messageChan)
-
-		// Simulate sending server events
-		go func() {
-			for {
-				time.Sleep(2 * time.Second)
-				// In a real app, you would send actual task updates here
-				messageChan <- time.Now().Format("2006-01-02 15:04:05")
-			}
-		}()
-
-		c.Stream(func(w io.Writer) bool {
-			if msg, ok := <-messageChan; ok {
-				c.SSEvent("message", msg)
-				return true
-			}
-			return false
-		})
-	})
 
 	router.POST("/a2a/server", func(c *gin.Context) {
 		// 检查是否为 SSE 流式请求

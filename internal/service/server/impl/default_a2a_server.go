@@ -407,3 +407,4 @@ func (s *DefaultA2AServer) GetAuthenticatedExtendedCard(ctx context.Context) (*m
 func (s *DefaultA2AServer) ListTasks(ctx context.Context) ([]*model.Task, error) {
 	return s.taskManager.ListTasks(ctx)
 }
+
