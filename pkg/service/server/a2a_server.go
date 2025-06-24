@@ -35,4 +35,7 @@ type A2AServer interface {
 	// GetAuthenticatedExtendedCard retrieves the authenticated extended AgentCard for this server.
 	// This method should return a more detailed version of the Agent Card if the client is authenticated.
 	GetAuthenticatedExtendedCard(ctx context.Context) (*model.AgentCard, error)
+
+	// ListTasks returns all tasks
+	ListTasks(ctx context.Context) ([]*model.Task, error)
 }

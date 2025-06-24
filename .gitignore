@@ -1,0 +1,35 @@
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go vendor
+/vendor/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Mac
+.DS_Store
+
+# 前端依赖和构建产物
+examples/simple-client/web/node_modules/
+examples/simple-client/web/dist/
+examples/simple-client/web/.env
+examples/simple-client/web/.env.*
+examples/simple-client/web/package-lock.json
+examples/simple-client/web/yarn.lock
+examples/simple-client/web/pnpm-lock.yaml
+
+# 日志
+*.log
+
+# 其他
+*.tmp
+*.bak 

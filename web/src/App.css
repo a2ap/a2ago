@@ -1,0 +1,54 @@
+.features-card {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid #e2e8f0;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.feature-enabled {
+  color: #22c55e;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05em;
+}
+.feature-disabled {
+  color: #a0aec0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05em;
+}
+.feature-icon {
+  font-size: 1.1em;
+  margin-right: 0.3em;
+}
+.version-badge {
+  background: #e0e7ef;
+  color: #6366f1;
+  border-radius: 6px;
+  padding: 0.2em 0.7em;
+  font-size: 0.95em;
+  margin-left: 1em;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .features-card {
+    padding: 1rem;
+    margin-top: 0.5rem;
+  }
+  .features-list {
+    font-size: 0.98em;
+  }
+} 

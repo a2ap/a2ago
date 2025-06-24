@@ -2,6 +2,7 @@ package model
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Task represents a task in the A2A system
@@ -18,12 +19,15 @@ type Task struct {
 	History []*Message `json:"history"`
 	// Metadata is the metadata associated with the task
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
+	// CreatedAt is the creation time of the task
+	CreatedAt string `json:"createdAt,omitempty"`
 }
 
 // NewTask creates a new Task
 func NewTask(id string) *Task {
 	return &Task{
 		ID:        id,
+		CreatedAt: time.Now().Format(time.RFC3339),
 		Artifacts: make([]*TaskArtifact, 0),
 		History:   make([]*Message, 0),
 		Metadata:  make(map[string]interface{}),

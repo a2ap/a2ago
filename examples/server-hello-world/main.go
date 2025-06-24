@@ -19,7 +19,7 @@ func main() {
 	agentCard := &model.AgentCard{
 		Name:        "A2A Go Server",
 		Description: "A sample A2A agent implemented in Go",
-		Version:     "1.0.0",
+		Version:     "0.01",
 		URL:         "http://localhost:8089",
 		Capabilities: &model.AgentCapabilities{
 			Streaming:              true,
@@ -60,7 +60,12 @@ func main() {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	// 9. 注册路由
+	// 9. 设置路由
+	// Serve frontend static files
+	router.Static("/assets", "./web/dist/assets")
+	router.StaticFile("/", "./web/dist/index.html")
+	router.StaticFile("/favicon.ico", "./web/dist/favicon.ico") // Optional: handle favicon
+
 	router.GET("/.well-known/agent.json", func(c *gin.Context) {
 		c.JSON(http.StatusOK, a2aServer.GetSelfAgentCard())
 	})
@@ -87,6 +92,7 @@ func main() {
 		}
 		c.JSON(http.StatusOK, extendedCard)
 	})
+
 
 	router.POST("/a2a/server", func(c *gin.Context) {
 		// 检查是否为 SSE 流式请求
@@ -124,6 +130,31 @@ func main() {
 			response := dispatcher.Dispatch(&request)
 			c.JSON(http.StatusOK, response)
 		}
+	})
+
+	// 查询所有任务
+	router.GET("/a2a/tasks", func(c *gin.Context) {
+		tasks, err := a2aServer.ListTasks(c.Request.Context())
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		c.JSON(http.StatusOK, tasks)
+	})
+
+	// 查询单个任务详情
+	router.GET("/a2a/task/:id", func(c *gin.Context) {
+		taskID := c.Param("id")
+		task, err := a2aServer.GetTask(c.Request.Context(), taskID)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+			return
+		}
+		if task == nil {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Task not found"})
+			return
+		}
+		c.JSON(http.StatusOK, task)
 	})
 
 	// 10. 启动服务

@@ -32,4 +32,7 @@ type TaskManager interface {
 
 	// GetTaskNotification gets a task notification config
 	GetTaskNotification(ctx context.Context, taskID string) (*model.TaskPushNotificationConfig, error)
+
+	// ListTasks returns all tasks
+	ListTasks(ctx context.Context) ([]*model.Task, error)
 }

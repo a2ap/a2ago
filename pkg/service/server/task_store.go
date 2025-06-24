@@ -19,6 +19,9 @@ type TaskStore interface {
 	// Delete removes a task by its ID.
 	Delete(ctx context.Context, taskID string) error
 
+	// ListTasks returns all tasks
+	ListTasks(ctx context.Context) ([]*model.Task, error)
+
 	//// List lists all tasks with pagination.
 	//List(ctx context.Context, page, pageSize int) ([]*model.Task, error)
 }
